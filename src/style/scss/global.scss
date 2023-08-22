@@ -6,6 +6,23 @@
     .copy-to-clipboard-container {
         vertical-align: top;
         display: none;
+        position: relative;
+    }
+    .copy-to-clipboard-tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #1C1F35;
+        color: #fafafa;
+        text-align: center;
+        border-radius: 3px;
+        padding: 5px 2px;
+        position: absolute;
+        z-index: 1;
+        top: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
     }
     .click-to-add {
         display: none;
