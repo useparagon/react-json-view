@@ -1,160 +1,16 @@
 {
   "name": "@microlink/react-json-view",
-  "description": "Interactive react component for displaying javascript arrays and JSON objects1.",
+  "description": "Interactive react component for displaying javascript arrays and JSON objects.",
   "homepage": "https://github.com/microlinkhq/react-json-view",
   "version": "1.22.2",
   "main": "dist/main.js",
   "author": {
     "name": "Mac Gainor"
   },
-  "contributors": [
-    {
-      "name": "mac",
-      "email": "mac.gainor@gmail.com"
-    },
-    {
-      "name": "Brad Adams",
-      "email": "hi@breadadams.com"
-    },
-    {
-      "name": "Kiko Beats",
-      "email": "josefrancisco.verdu@gmail.com"
-    },
-    {
-      "name": "Xuefei Li",
-      "email": "frankvsense@gmail.com"
-    },
-    {
-      "name": "Caina Leao",
-      "email": "caina.leao@endemolshine.com"
-    },
-    {
-      "name": "Tom McLaughlin",
-      "email": "tom@codedown.io"
-    },
-    {
-      "name": "Andy Baird",
-      "email": "andy@threadsculture.com"
-    },
-    {
-      "name": "Daniel Santos",
-      "email": "dsantosp12@gmail.com"
-    },
-    {
-      "name": "mac-s-g",
-      "email": "mac@conversica.com"
-    },
-    {
-      "name": "Pravdomil",
-      "email": "pravdomil.toman@gmail.com"
-    },
-    {
-      "name": "jorgejar",
-      "email": "jorge.jaramillo@docker.com"
-    },
-    {
-      "name": "superfaz",
-      "email": "16510828+superfaz@users.noreply.github.com"
-    },
-    {
-      "name": "Varad Chemburkar",
-      "email": "vhc1992@gmail.com"
-    },
-    {
-      "name": "Jason Etcovitch",
-      "email": "jasonetco@gmail.com"
-    },
-    {
-      "name": "John Arthur",
-      "email": "thorjarhun@users.noreply.github.com"
-    },
-    {
-      "name": "Jack",
-      "email": "jackdh@users.noreply.github.com"
-    },
-    {
-      "name": "Guillaume FORTAINE",
-      "email": "guillaume.fortaine@ingenico.com"
-    },
-    {
-      "name": "Michael Reynolds",
-      "email": "michael.reynolds@paybase.io"
-    },
-    {
-      "name": "Oleg Proskurin",
-      "email": "regx@usul.su"
-    },
-    {
-      "name": "EvertE",
-      "email": "evert.etienne@sitemark.com"
-    },
-    {
-      "name": "REDMOND\\xuefl",
-      "email": "xuefl@microsoft.com"
-    },
-    {
-      "name": "Rubens Mariuzzo",
-      "email": "rubens@mariuzzo.com"
-    },
-    {
-      "name": "Ryan Haywood",
-      "email": "ryan@ryanhaywood.com"
-    },
-    {
-      "name": "Taylor Birkeland",
-      "email": "tabirkeland@gmail.com"
-    },
-    {
-      "name": "Dheeraj Yennam",
-      "email": "dyennam@gmail.com"
-    },
-    {
-      "name": "Uzi Kilon",
-      "email": "uzikilon@users.noreply.github.com"
-    },
-    {
-      "name": "Aaron Cunnington",
-      "email": "azcn2503@gmail.com"
-    },
-    {
-      "name": "DELORD Vincent",
-      "email": "vincent.delord@renault.com"
-    },
-    {
-      "name": "casey langen",
-      "email": "clangen@nerdwallet.com"
-    },
-    {
-      "name": "Craig Kochis",
-      "email": "cjkochis@gmail.com"
-    },
-    {
-      "name": "Cai Leao",
-      "email": "cainaleaouk@users.noreply.github.com"
-    },
-    {
-      "name": "Bob Thomas",
-      "email": "BThomas@tripwire.com"
-    },
-    {
-      "name": "Ashwin Menkudle",
-      "email": "ashwinmenkudle@gmail.com"
-    },
-    {
-      "name": "shybyte",
-      "email": "ein@volloeko.de"
-    },
-    {
-      "name": "Jeremy Liberman",
-      "email": "mrleebo@msn.com"
-    }
-  ],
+  "contributors": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/microlinkhq/react-json-view.git"
-  },
-  "bugs": {
-    "url": "https://github.com/microlinkhq/react-json-view/issues"
+    "url": "git+https://github.com/useparagon/react-json-view"
   },
   "keywords": [
     "array-viewer",
@@ -230,7 +86,7 @@
     "index.d.ts"
   ],
   "scripts": {
-    "build": "NODE_ENV=production webpack --config webpack/webpack.config.js --mode production --progress",
+    "build": "NODE_ENV=production webpack --config webpack/webpack.config.js --mode production",
     "build:demo": "NODE_ENV=production webpack --config webpack/webpack.config-demo.js -p --display-error-details --progress --optimize-minimize",
     "dev": "NODE_ENV=development webpack-dev-server --config webpack/webpack.config-dev.js --open",
     "lint": "NODE_ENV=test ./node_modules/.bin/eslint src",

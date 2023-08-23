@@ -6,8 +6,6 @@
     .copy-to-clipboard-container {
         vertical-align: top;
         display: none;
-        position: relative;
-
     }
 
     .click-to-add {
@@ -54,33 +52,5 @@
         &:hover .click-to-edit {
             display: inline-block;
         }
-    }
-}
-
-.copy-to-clipboard-icon {
-    position: relative;
-
-    &:hover {
-        .copy-to-clipboard-tooltiptext {
-            opacity: 1;
-            visibility: visible;
-        }
-    }
-
-    .copy-to-clipboard-tooltiptext {
-        visibility: hidden;
-        width: 80px;
-        background-color: #1C1F35;
-        color: #fafafa;
-        text-align: center;
-        border-radius: 3px;
-        padding: 5px 2px;
-        position: absolute;
-        z-index: 1;
-        top: 125%;
-        left: 50%;
-        margin-left: -40px;
-        opacity: 0;
-        transition: opacity 0.3s;
     }
 }

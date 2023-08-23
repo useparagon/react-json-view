@@ -12,7 +12,8 @@ export default class extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            copied: false
+            copied: false,
+            iconHovered: false
         };
     }
 
@@ -94,6 +95,12 @@ export default class extends React.PureComponent {
                     display: rowHovered ? 'inline-block' : 'none',
                     position: 'relative'
                 }}
+                onMouseEnter={() =>
+                    this.setState({ ...this.state, iconHovered: true })
+                }
+                onMouseLeave={() =>
+                    this.setState({ ...this.state, iconHovered: false })
+                }
             >
                 <span
                     style={{
@@ -104,7 +111,51 @@ export default class extends React.PureComponent {
                 >
                     {this.getClippyIcon()}
                 </span>
-                <span class="copy-to-clipboard-tooltiptext">{this.state.copied ? 'Copied' : 'Click to copy'}</span>
+                <span
+                    class="copy-to-clipboard-tooltiptext"
+                    style={{
+                        visibility: this.state.iconHovered
+                            ? 'visible'
+                            : 'hidden',
+                        width: '72px',
+                        backgroundColor: '#1C1F35',
+                        color: '#fafafa',
+                        textAlign: 'center',
+                        borderRadius: '3px',
+                        padding: '5px 2px',
+                        position: 'absolute',
+                        zIndex: 1,
+                        top: '125%',
+                        left: '50%',
+                        marginLeft: '-36px',
+                        opacity: this.state.iconHovered ? 1 : 0,
+                        transition: 'opacity 0.3s',
+                        fontFamily: 'Inter,sans-serif'
+                    }}
+                >
+                    {this.state.copied ? (
+                        <span style={{ display: 'flex', justifyContent: 'space-around' }}>
+                            <svg
+                                width="12"
+                                height="11"
+                                viewBox="0 0 12 11"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style={{ marginRight: '-8px' }}
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M9.69396 0.5L3.87767 6.31629L1.9389 4.37753L0 6.31629L3.87767 10.194L11.6329 2.43876L9.69396 0.5Z"
+                                    fill="white"
+                                />
+                            </svg>
+                            {'  '} Copied
+                        </span>
+                    ) : (
+                        'Click to copy'
+                    )}
+                </span>
             </span>
         );
     }
