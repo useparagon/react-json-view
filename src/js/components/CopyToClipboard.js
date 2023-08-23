@@ -89,7 +89,6 @@ export default class extends React.PureComponent {
         return (
             <span
                 className="copy-to-clipboard-container"
-                title="Copy"
                 style={{
                     verticalAlign: 'top',
                     display: rowHovered ? 'inline-block' : 'none'
@@ -104,6 +103,7 @@ export default class extends React.PureComponent {
                 >
                     {this.getClippyIcon()}
                 </span>
+                <span className="copy-to-clipboard-tooltiptext">{this.state.copied ? 'Copied' : 'Click to copy'}</span>
             </span>
         );
     }
