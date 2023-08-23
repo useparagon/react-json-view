@@ -104,7 +104,6 @@ export default class extends React.PureComponent {
                 >
                     {this.getClippyIcon()}
                 </span>
-                <span className="copy-to-clipboard-tooltiptext">{this.state.copied ? 'Copied' : 'Click to copy'}</span>
             </span>
         );
     }
