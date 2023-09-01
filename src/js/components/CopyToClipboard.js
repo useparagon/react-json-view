@@ -117,20 +117,22 @@ export default class extends React.PureComponent {
                         visibility: this.state.iconHovered
                             ? 'visible'
                             : 'hidden',
-                        width: '72px',
+                        width: this.state.copied ? '72px' :'40px',
                         backgroundColor: '#1C1F35',
                         color: '#fafafa',
                         textAlign: 'center',
                         borderRadius: '3px',
-                        padding: '5px 2px',
+                        padding: '8px 4px',
                         position: 'absolute',
                         zIndex: 1,
                         top: '125%',
                         left: '50%',
-                        marginLeft: '-36px',
+                        marginLeft: this.state.copied? '-32px' :'-25px',
                         opacity: this.state.iconHovered ? 1 : 0,
-                        transition: 'opacity 0.3s',
-                        fontFamily: 'Inter,sans-serif'
+                        animation: '1s ease 0s 1 normal none running ihsWtb',
+                        fontFamily: 'Inter,sans-serif',
+                        fontSize: '11px',
+                        fontWeight: '500'
                     }}
                 >
                     {this.state.copied ? (
@@ -153,7 +155,7 @@ export default class extends React.PureComponent {
                             {'  '} Copied
                         </span>
                     ) : (
-                        'Click to copy'
+                        'Copy'
                     )}
                 </span>
             </span>

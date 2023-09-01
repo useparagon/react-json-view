@@ -72,6 +72,7 @@ class VariableEditor extends React.PureComponent {
                 }
                 class="variable-row"
                 key={variable.name}
+                style={{height: '14px'}}
             >
                 {type == 'array' ? (
                     displayArrayKey ? (

@@ -154,7 +154,18 @@ class RjvObject extends React.PureComponent {
         const IconComponent = expanded ? ExpandedIcon : CollapsedIcon;
 
         return (
-            <span>
+            <div
+                onMouseEnter={() =>
+                    this.setState({ ...this.state, hovered: true })
+                }
+                onMouseLeave={() =>
+                    this.setState({ ...this.state, hovered: false })
+                }
+                style={{
+                    width: '100%',
+                    height: '14px'
+                }}
+            >
                 <span
                     onClick={e => {
                         this.toggleCollapsed();
@@ -173,7 +184,7 @@ class RjvObject extends React.PureComponent {
                     </span>
                 </span>
                 {expanded ? this.getObjectMetaData(src) : null}
-            </span>
+            </div>
         );
     }
 
@@ -206,12 +217,6 @@ class RjvObject extends React.PureComponent {
         return (
             <div
                 class="object-key-val"
-                onMouseEnter={() =>
-                    this.setState({ ...this.state, hovered: true })
-                }
-                onMouseLeave={() =>
-                    this.setState({ ...this.state, hovered: false })
-                }
                 {...Theme(theme, jsvRoot ? 'jsv-root' : 'objectKeyVal', styles)}
             >
                 {this.getBraceStart(object_type, expanded)}
