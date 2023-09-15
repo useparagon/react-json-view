@@ -227,7 +227,7 @@ class RjvObject extends React.PureComponent {
                           ...rest
                       })
                     : this.getEllipsis()}
-                <span class="brace-row">
+                <div class="brace-row" style={{height:'14px'}}>
                     <span
                         style={{
                             ...Theme(theme, 'brace').style,
@@ -236,8 +236,7 @@ class RjvObject extends React.PureComponent {
                     >
                         {object_type === 'array' ? ']' : '}'}
                     </span>
-                    {expanded ? null : this.getObjectMetaData(src)}
-                </span>
+                </div>
             </div>
         );
     }
