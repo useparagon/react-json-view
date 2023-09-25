@@ -129,7 +129,7 @@ export default class extends React.PureComponent {
                         left: '50%',
                         marginLeft: this.state.copied? '-32px' :'-25px',
                         opacity: this.state.iconHovered ? 1 : 0,
-                        animation: '1s ease 0s 1 normal none running ihsWtb',
+                        animation: '.1s ease 0s 1 normal none running ihsWtb',
                         fontFamily: 'Inter,sans-serif',
                         fontSize: '11px',
                         fontWeight: '500'

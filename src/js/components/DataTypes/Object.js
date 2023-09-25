@@ -163,7 +163,8 @@ class RjvObject extends React.PureComponent {
                 }
                 style={{
                     width: '100%',
-                    height: '14px'
+                    height: '14px',
+                    display: 'flex'
                 }}
             >
                 <span
@@ -227,7 +228,16 @@ class RjvObject extends React.PureComponent {
                           ...rest
                       })
                     : this.getEllipsis()}
-                <div class="brace-row" style={{height:'14px'}}>
+                <div
+                    class="brace-row"
+                    style={{ height: '14px' }}
+                    onMouseEnter={() =>
+                        this.setState({ ...this.state, hovered: true })
+                    }
+                    onMouseLeave={() =>
+                        this.setState({ ...this.state, hovered: false })
+                    }
+                >
                     <span
                         style={{
                             ...Theme(theme, 'brace').style,
@@ -236,6 +246,7 @@ class RjvObject extends React.PureComponent {
                     >
                         {object_type === 'array' ? ']' : '}'}
                     </span>
+                    {expanded ? null : this.getObjectMetaData(src)}
                 </div>
             </div>
         );

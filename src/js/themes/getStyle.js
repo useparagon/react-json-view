@@ -69,7 +69,8 @@ const getDefaultThemeStyling = theme => {
         },
         'brace-row': {
             display: 'inline-block',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            marginTop: '1px'
         },
         brace: {
             display: 'inline-block',
