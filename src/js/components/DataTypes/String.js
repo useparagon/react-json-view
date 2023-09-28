@@ -35,6 +35,7 @@ export default class extends React.PureComponent {
                 );
             }
         );
+        this.props.changeDataExpanded(this.state.collapsed);
     };
 
     render() {

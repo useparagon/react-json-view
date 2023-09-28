@@ -93,7 +93,8 @@ export default class extends React.PureComponent {
                 style={{
                     verticalAlign: 'top',
                     display: rowHovered ? 'inline-block' : 'none',
-                    position: 'relative'
+                    position: 'relative',
+                    ...(this.props.adjustWidth && { width: '12px' })
                 }}
                 onMouseEnter={() =>
                     this.setState({ ...this.state, iconHovered: true })

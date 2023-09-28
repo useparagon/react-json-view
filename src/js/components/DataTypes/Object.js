@@ -139,6 +139,7 @@ class RjvObject extends React.PureComponent {
 
     getBraceStart(object_type, expanded) {
         const { src, theme, iconStyle, parent_type } = this.props;
+        const { size } = this.state;
 
         if (parent_type === 'array_group') {
             return (
@@ -183,8 +184,21 @@ class RjvObject extends React.PureComponent {
                     <span {...Theme(theme, 'brace')}>
                         {object_type === 'array' ? '[' : '{'}
                     </span>
+                    {!expanded && this.getEllipsis()}
+                    {!expanded ? (
+                        <span
+                            style={{
+                                ...Theme(theme, 'brace').style,
+                                paddingLeft: expanded ? '3px' : '1px'
+                            }}
+                        >
+                            {object_type === 'array' ? ']' : '}'}
+                        </span>
+                    ) : (
+                        ''
+                    )}
                 </span>
-                {expanded ? this.getObjectMetaData(src) : null}
+                {this.getObjectMetaData(src)}
             </div>
         );
     }
@@ -221,16 +235,15 @@ class RjvObject extends React.PureComponent {
                 {...Theme(theme, jsvRoot ? 'jsv-root' : 'objectKeyVal', styles)}
             >
                 {this.getBraceStart(object_type, expanded)}
-                {expanded
-                    ? this.getObjectContent(depth, src, {
-                          theme,
-                          iconStyle,
-                          ...rest
-                      })
-                    : this.getEllipsis()}
+                {expanded &&
+                    this.getObjectContent(depth, src, {
+                        theme,
+                        iconStyle,
+                        ...rest
+                    })}
                 <div
                     class="brace-row"
-                    style={{ height: '14px' }}
+                    style={{ ...(expanded && { height: '14px' }) }}
                     onMouseEnter={() =>
                         this.setState({ ...this.state, hovered: true })
                     }
@@ -238,15 +251,16 @@ class RjvObject extends React.PureComponent {
                         this.setState({ ...this.state, hovered: false })
                     }
                 >
-                    <span
-                        style={{
-                            ...Theme(theme, 'brace').style,
-                            paddingLeft: expanded ? '3px' : '0px'
-                        }}
-                    >
-                        {object_type === 'array' ? ']' : '}'}
-                    </span>
-                    {expanded ? null : this.getObjectMetaData(src)}
+                    {expanded && (
+                        <span
+                            style={{
+                                ...Theme(theme, 'brace').style,
+                                paddingLeft: expanded ? '3px' : '0px'
+                            }}
+                        >
+                            {object_type === 'array' ? ']' : '}'}
+                        </span>
+                    )}
                 </div>
             </div>
         );

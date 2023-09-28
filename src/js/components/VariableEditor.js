@@ -6,6 +6,7 @@ import dispatcher from './../helpers/dispatcher';
 import parseInput from './../helpers/parseInput';
 import stringifyVariable from './../helpers/stringifyVariable';
 import CopyToClipboard from './CopyToClipboard';
+import AttributeStore from './../stores/ObjectAttributes';
 
 //data type components
 import {
@@ -38,9 +39,20 @@ class VariableEditor extends React.PureComponent {
             parsedInput: {
                 type: false,
                 value: null
-            }
+            },
+            dataExpanded: !AttributeStore.get(
+                props.rjvId,
+                props.namespace,
+                'collapsed',
+                true
+            )
         };
+        this.changeDataExpanded = this.changeDataExpanded.bind(this);
     }
+
+    changeDataExpanded (value) {
+        this.setState({ dataExpanded: value});
+    };
 
     render() {
         const {
@@ -59,6 +71,7 @@ class VariableEditor extends React.PureComponent {
             keyModifier
         } = this.props;
         const { editMode } = this.state;
+
         return (
             <div
                 {...Theme(theme, 'objectKeyVal', {
@@ -72,7 +85,11 @@ class VariableEditor extends React.PureComponent {
                 }
                 class="variable-row"
                 key={variable.name}
-                style={{height: '14px'}}
+                style={{
+                    ...(!this.state.dataExpanded
+                        ? { height: '14px' }
+                        : { display: 'flex', flexDirection: 'column' })
+                }}
             >
                 {type == 'array' ? (
                     displayArrayKey ? (
@@ -126,10 +143,13 @@ class VariableEditor extends React.PureComponent {
                               }
                     }
                     {...Theme(theme, 'variableValue', {
-                        cursor: onSelect === false ? 'default' : 'pointer'
+                        cursor: onSelect === false ? 'default' : 'pointer',
+                        ...(this.state.dataExpanded
+                            ? { margin: '2px 0px' }
+                            : {})
                     })}
                 >
-                    {this.getValue(variable, editMode)}
+                    {this.getValue(variable, editMode, this.changeDataExpanded)}
                 </div>
                 {enableClipboard ? (
                     <CopyToClipboard
@@ -137,6 +157,7 @@ class VariableEditor extends React.PureComponent {
                         hidden={editMode}
                         src={variable.value}
                         clickCallback={enableClipboard}
+                        adjustWidth={true}
                         {...{ theme, namespace: [...namespace, variable.name] }}
                     />
                 ) : null}
@@ -218,14 +239,20 @@ class VariableEditor extends React.PureComponent {
         );
     };
 
-    getValue = (variable, editMode) => {
+    getValue = (variable, editMode, changeDataExpanded) => {
         const type = editMode ? false : variable.type;
         const { props } = this;
         switch (type) {
             case false:
                 return this.getEditInput();
             case 'string':
-                return <JsonString value={variable.value} {...props} />;
+                return (
+                    <JsonString
+                        value={variable.value}
+                        changeDataExpanded={changeDataExpanded}
+                        {...props}
+                    />
+                );
             case 'integer':
                 return <JsonInteger value={variable.value} {...props} />;
             case 'float':
