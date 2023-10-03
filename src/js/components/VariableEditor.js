@@ -50,9 +50,9 @@ class VariableEditor extends React.PureComponent {
         this.changeDataExpanded = this.changeDataExpanded.bind(this);
     }
 
-    changeDataExpanded (value) {
-        this.setState({ dataExpanded: value});
-    };
+    changeDataExpanded(value) {
+        this.setState({ dataExpanded: value });
+    }
 
     render() {
         const {
@@ -75,7 +75,10 @@ class VariableEditor extends React.PureComponent {
         return (
             <div
                 {...Theme(theme, 'objectKeyVal', {
-                    paddingLeft: indentWidth * singleIndent
+                    paddingLeft: indentWidth * singleIndent,
+                    ...(!this.state.dataExpanded
+                        ? { height: '14px', display: 'flex' }
+                        : { display: 'flex', flexDirection: 'column' })
                 })}
                 onMouseEnter={() =>
                     this.setState({ ...this.state, hovered: true })
@@ -85,42 +88,73 @@ class VariableEditor extends React.PureComponent {
                 }
                 class="variable-row"
                 key={variable.name}
-                style={{
-                    ...(!this.state.dataExpanded
-                        ? { height: '14px' }
-                        : { display: 'flex', flexDirection: 'column' })
-                }}
             >
-                {type == 'array' ? (
-                    displayArrayKey ? (
-                        <span
-                            {...Theme(theme, 'array-key')}
-                            key={variable.name + '_' + namespace}
-                        >
-                            {variable.name}
-                            <div {...Theme(theme, 'colon')}>:</div>
-                        </span>
-                    ) : null
-                ) : (
-                    <span>
-                        <span
-                            {...Theme(theme, 'object-name')}
-                            class="object-key"
-                            key={variable.name + '_' + namespace}
-                        >
-                            {!!quotesOnKeys && (
-                                <span style={{ verticalAlign: 'top' }}>"</span>
-                            )}
-                            <span style={{ display: 'inline-block' }}>
+                <div
+                    style={{
+                        display: 'inline-block',
+                        ...(this.state.dataExpanded
+                            ? { height: '14px', display: 'flex' }
+                            : { marginTop: '1px' })
+                    }}
+                >
+                    {type == 'array' ? (
+                        displayArrayKey ? (
+                            <span
+                                {...Theme(theme, 'array-key', {
+                                    ...(this.state.dataExpanded
+                                        ? { marginTop: '1px' }
+                                        : {})
+                                })}
+                                key={variable.name + '_' + namespace}
+                            >
                                 {variable.name}
+                                <div {...Theme(theme, 'colon')}>:</div>
                             </span>
-                            {!!quotesOnKeys && (
-                                <span style={{ verticalAlign: 'top' }}>"</span>
-                            )}
+                        ) : null
+                    ) : (
+                        <span
+                            style={{
+                                ...(this.state.dataExpanded
+                                    ? { marginTop: '1px' }
+                                    : {})
+                            }}
+                        >
+                            <span
+                                {...Theme(theme, 'object-name')}
+                                class="object-key"
+                                key={variable.name + '_' + namespace}
+                            >
+                                {!!quotesOnKeys && (
+                                    <span style={{ verticalAlign: 'top' }}>
+                                        "
+                                    </span>
+                                )}
+                                <span style={{ display: 'inline-block' }}>
+                                    {variable.name}
+                                </span>
+                                {!!quotesOnKeys && (
+                                    <span style={{ verticalAlign: 'top' }}>
+                                        "
+                                    </span>
+                                )}
+                            </span>
+                            <span {...Theme(theme, 'colon')}>:</span>
                         </span>
-                        <span {...Theme(theme, 'colon')}>:</span>
-                    </span>
-                )}
+                    )}
+                    {enableClipboard && this.state.dataExpanded ? (
+                        <CopyToClipboard
+                            rowHovered={this.state.hovered}
+                            hidden={editMode}
+                            src={variable.value}
+                            clickCallback={enableClipboard}
+                            adjustWidth={true}
+                            {...{
+                                theme,
+                                namespace: [...namespace, variable.name]
+                            }}
+                        />
+                    ) : null}
+                </div>
                 <div
                     class="variable-value"
                     onClick={
@@ -146,12 +180,12 @@ class VariableEditor extends React.PureComponent {
                         cursor: onSelect === false ? 'default' : 'pointer',
                         ...(this.state.dataExpanded
                             ? { margin: '2px 0px' }
-                            : {})
+                            : { marginTop: '1px' })
                     })}
                 >
                     {this.getValue(variable, editMode, this.changeDataExpanded)}
                 </div>
-                {enableClipboard ? (
+                {enableClipboard && !this.state.dataExpanded ? (
                     <CopyToClipboard
                         rowHovered={this.state.hovered}
                         hidden={editMode}
