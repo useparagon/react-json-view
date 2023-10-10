@@ -147,7 +147,6 @@ class VariableEditor extends React.PureComponent {
                             hidden={editMode}
                             src={variable.value}
                             clickCallback={enableClipboard}
-                            adjustWidth={true}
                             {...{
                                 theme,
                                 namespace: [...namespace, variable.name]
@@ -191,7 +190,6 @@ class VariableEditor extends React.PureComponent {
                         hidden={editMode}
                         src={variable.value}
                         clickCallback={enableClipboard}
-                        adjustWidth={true}
                         {...{ theme, namespace: [...namespace, variable.name] }}
                     />
                 ) : null}
